@@ -101,14 +101,16 @@ public class VeiculoMenu extends BaseMenu {
         vei.setAnoFabricacao(anoFab);
         vei.setPrecoVeiculo(valorVei);
         if (this.srvc.Adicionar(vei) != null) {
-            System.out.println("Veículo cadastrado com sucesso");
+            System.out.println("-------------------------------");
+            System.out.println("Informações do veículo adicionado abaixo");
+            this.Imprimir(vei);
+            System.out.println("VEÍCULO ADICIONADO COM SUCESSO");
         }else{
             System.out.println("ERRO - Não foi possível adicionar o veículo");
         }
         System.out.println("Aperte <ENTER> para continuar");
         this.scanner.nextLine();
         this.scanner.nextLine();
-
     }
 
     @Override
@@ -119,11 +121,15 @@ public class VeiculoMenu extends BaseMenu {
         int cod = this.scanner.nextInt();
         Veiculo vei = this.srvc.Ler(cod);
         if (vei != null) {
+        System.out.println("-------------------------------");
+        System.out.println("Veículo selecionado para alteração:");
+        this.Imprimir(vei);
             System.out.println("Informe o novo Valor");
             double novovalor = this.scanner.nextDouble();
             vei.setPrecoVeiculo(novovalor);
             if (this.srvc.Editar(vei) != null) {
-                System.out.println("Alteração realizada com sucesso");
+                this.Imprimir(vei);
+                System.out.println("ALTERAÇÃO REALIZADA COM SUCESSO");
             }else{
                 System.out.println("ERRO - Alteração não pode ser concluida");
             }
@@ -144,7 +150,10 @@ public class VeiculoMenu extends BaseMenu {
         Veiculo vei = this.srvc.Ler(cod);
         if (vei!=null) {
             if (this.srvc.Deletar(cod) != null) {
-                System.out.println("Veículo removido com sucesso");
+                System.out.println("-------------------------------");
+                System.out.println("Informações do veículo removido abaixo");
+                this.Imprimir(vei);
+                System.out.println("VEÍCULO REMOVIDO COM SUCESSO");
             }else{
                 System.out.println("ERRO - Veículo não pode ser removido");
             }
